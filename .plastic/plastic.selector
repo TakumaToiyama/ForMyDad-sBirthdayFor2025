@@ -1,0 +1,4 @@
+repository "Christmas Present Sorting Game@local"
+  path "/"
+    br "/main"
+    co "/main"
