@@ -39,8 +39,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: BackGround
+    uniqueID: 733375577
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: UIBackGround
+    uniqueID: 3696586781
     locked: 0
   m_RenderingLayers:
   - Default

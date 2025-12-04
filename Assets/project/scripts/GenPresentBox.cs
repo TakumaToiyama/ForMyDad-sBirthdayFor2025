@@ -9,29 +9,19 @@ public class GenPresentBox : MonoBehaviour
     public GameObject presentBox;
     private consecutiveTimesControler consecutiveControler;
     List<PresentController> PresentsList = new List<PresentController>();
-    // int consecutiveTimes;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    // void Awake()
-    // {
-    //     SceneManager.sceneLoaded += OnSceneLoaded;
-    // }
+    Vector3 box1 = new Vector3(0f,-1f,0);
+    Vector3 box2 = new Vector3(-3.65f,-1f,0);
+    Vector3 box3 = new Vector3(-7.3f,-1f,0);
     void Start()
     {
-        genBox(0);
-        genBox(-5);
-        genBox(-10);
+        genBox(box1);
+        genBox(box2);
+        genBox(box3);
 
         GameObject CanvasObject = GameObject.FindWithTag("Canvas");
         // 【重要】Findで得られたGameObjectからGetComponentを使ってスクリプトを取得する
         consecutiveControler = CanvasObject.GetComponent<consecutiveTimesControler>();
     }
-
-    // void OnSceneLoaded( Scene scene, LoadSceneMode mode)
-    // {
-    //     if (scene.name == "MainScene")
-    //         consecutiveTimes = 0;
-    // }
 
     
 
@@ -43,14 +33,13 @@ public class GenPresentBox : MonoBehaviour
             if (IsCorrectInput(PresentsList[0].getColorNum()))
             {
                 MoveAllPresentBox();
-                genBox(-10);
+                genBox(box3);
 
                 GameObject.Find("Canvas").GetComponent<UIContoller>().AddScore();
 
                 // consecutiveTimes++;
                 consecutiveControler.addConsecutiveTimes();
                 
-                // if (consecutiveTimes == 20)
                 if (consecutiveControler.getConsecutiveTimes() == 20)
                 {
                     GameObject.Find("Canvas").GetComponent<UIContoller>().AddTimeRemaining();
@@ -60,14 +49,9 @@ public class GenPresentBox : MonoBehaviour
             } else 
             {
                 // consecutiveTimes = 0;
-                consecutiveControler.resetConsecutiveTimes();
+                // consecutiveControler.resetConsecutiveTimes();
             }
-
-        // Debug.Log(consecutiveTimes);
-            Debug.Log(consecutiveControler.getConsecutiveTimes());
         }
-        
-
     }
 
     bool IsWASDandSpace()
@@ -80,7 +64,6 @@ public class GenPresentBox : MonoBehaviour
         Input.GetKeyDown(KeyCode.F) ||
         Input.GetKeyDown(KeyCode.Space))) 
         {
-            Debug.Log("press key");
             return true;
         }
         return false;
@@ -98,30 +81,19 @@ public class GenPresentBox : MonoBehaviour
         return false;
     }
 
-    void genBox(int x)
+    void genBox(Vector3 presentVector)
     {
-        GameObject obj = Instantiate(presentBox, new Vector3(x,0,0),Quaternion.identity);
+        GameObject obj = Instantiate(presentBox, presentVector,Quaternion.identity);
         PresentsList.Add(obj.GetComponent<PresentController>());
     }
 
     void MoveAllPresentBox()
     {
-        Boolean RemoveItem = false;
+        Destroy(PresentsList[0].gameObject);
+        PresentsList.RemoveAt(0);
         foreach (PresentController present in PresentsList)
         {
-            if (present.getX() == 0)
-            {
-                RemoveItem = true;
-            } else
-            {
-                present.MovePresentBox();
-            }
-        }
-
-        if (RemoveItem)
-        {
-            Destroy(PresentsList[0].gameObject);
-            PresentsList.RemoveAt(0);
+            present.MovePresentBox();
         }
     }
 }

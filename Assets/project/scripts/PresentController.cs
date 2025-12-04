@@ -52,7 +52,7 @@ public class PresentController : MonoBehaviour
 
     public void MovePresentBox()
     {
-        targetPosition = new UnityEngine.Vector3(transform.position.x + 5, 0, 0);
+        targetPosition = new UnityEngine.Vector3(transform.position.x + 3.65f, -1, 0);
         isMoving = true;
     }
 
