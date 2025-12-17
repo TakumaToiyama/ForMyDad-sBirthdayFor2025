@@ -48,6 +48,7 @@ public class UIContoller : MonoBehaviour
         
     }
 
+
     // Update is called once per frame
     void Update()
     {
@@ -65,7 +66,6 @@ public class UIContoller : MonoBehaviour
             }
         }
         
-
         scoreText.GetComponent<TMP_Text>().text = "Score : " + score.ToString("D4");
         timerText.GetComponent<TMP_Text>().text = "" + Math.Round(timeRemaining,1);
     }
