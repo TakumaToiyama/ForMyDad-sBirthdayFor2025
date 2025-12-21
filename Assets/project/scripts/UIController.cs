@@ -9,7 +9,7 @@ public class UIContoller : MonoBehaviour
     float timeRemaining;
     bool timerIsRunnning = false;
     GameObject scoreText;
-    GameObject timerText;    
+    GameObject timerText; 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private static UIContoller instance;
 
@@ -39,7 +39,7 @@ public class UIContoller : MonoBehaviour
         {
             timerIsRunnning = true;
             score = 0;
-            timeRemaining = 5;
+            timeRemaining = 30;
         } else
         {
             

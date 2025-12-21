@@ -12,8 +12,6 @@ public class ResultBackgroundController : MonoBehaviour
     void Update()
     {
         transform.Translate(-0.003f, 0, 0);
-        // Debug.Log(transform.position.x < -449.08f);
-        // Debug.Log(transform.localPosition.x + " "+ transform.localPosition.y);
         if (transform.localPosition.x < -440.393f)
         {
             Debug.Log("move initial position");
