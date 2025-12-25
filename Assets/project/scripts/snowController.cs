@@ -7,6 +7,7 @@ public class snowController : MonoBehaviour
     public float fallSpeed;
     public float initialY;
     public float endY;
+    public float x;
     void Start()
     {
         
@@ -15,10 +16,10 @@ public class snowController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(0, fallSpeed, 0);
+        transform.Translate(0, (fallSpeed * 333.33f) * Time.deltaTime, 0);
         if (transform.localPosition.y < endY)
         {
-            transform.localPosition = new Vector3(-432.16f, initialY, 0);
+            transform.localPosition = new Vector3(x, initialY, 0);
         }
     }
 }

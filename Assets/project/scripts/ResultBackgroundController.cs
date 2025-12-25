@@ -11,7 +11,7 @@ public class ResultBackgroundController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(-0.003f, 0, 0);
+        transform.Translate(-1 * Time.deltaTime, 0, 0);
         if (transform.localPosition.x < -440.393f)
         {
             Debug.Log("move initial position");

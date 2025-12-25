@@ -25,7 +25,6 @@ public class consecutiveTimesControler : MonoBehaviour
     }
     void OnDestroy()
     {
-        Debug.Log("destroy");
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 

@@ -7,11 +7,19 @@ using UnityEngine.SceneManagement;
 public class GenPresentBox : MonoBehaviour
 {
     public GameObject presentBox;
+    private beforeMainGame beforeMainGameObj;
     private consecutiveTimesControler consecutiveControler;
     List<PresentController> PresentsList = new List<PresentController>();
     Vector3 box1 = new Vector3(0f,-1.83f,0);
     Vector3 box2 = new Vector3(-3.65f,-1.83f,0);
     Vector3 box3 = new Vector3(-7.3f,-1.83f,0);
+    MainAudioManager audioManager;
+    void Awake()
+    {
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<MainAudioManager>();
+        beforeMainGameObj = FindObjectOfType<beforeMainGame>();
+    }
+
     void Start()
     {
         genBox(box1);
@@ -19,7 +27,6 @@ public class GenPresentBox : MonoBehaviour
         genBox(box3);
 
         GameObject CanvasObject = GameObject.FindWithTag("Canvas");
-        // 【重要】Findで得られたGameObjectからGetComponentを使ってスクリプトを取得する
         consecutiveControler = CanvasObject.GetComponent<consecutiveTimesControler>();
     }
 
@@ -28,8 +35,22 @@ public class GenPresentBox : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (IsWASDandSpace() && !PresentsList[0].getIsMoving())
+        // if (IsWASDandSpace())
+        // {
+        //     Debug.Log("IsWASD");
+        //     if (!PresentsList[0].getIsMoving())
+        //     {
+        //         Debug.Log("PresentsList");
+        //         Debug.Log(beforeMainGameObj.getIsGameStart());
+        //         if (beforeMainGameObj.getIsGameStart())
+        //         {
+        //             Debug.Log("getISGamestart");
+        //         }
+        //     }
+        // }
+        if (IsWASDandSpace() && !PresentsList[0].getIsMoving() && beforeMainGameObj.getIsGameStart())
         {
+            Debug.Log("It workss");
             if (IsCorrectInput(PresentsList[0].getColorNum()))
             {
                 MoveAllPresentBox();
@@ -39,6 +60,8 @@ public class GenPresentBox : MonoBehaviour
 
                 // consecutiveTimes++;
                 consecutiveControler.addConsecutiveTimes();
+                audioManager.PlaySFX(audioManager.success);
+
                 
                 if (consecutiveControler.getConsecutiveTimes() == 20)
                 {
@@ -61,10 +84,10 @@ public class GenPresentBox : MonoBehaviour
         Input.GetKeyDown(KeyCode.A) ||
         Input.GetKeyDown(KeyCode.S) ||
         Input.GetKeyDown(KeyCode.D) ||
-        Input.GetKeyDown(KeyCode.F) ||
         Input.GetKeyDown(KeyCode.Space))) 
         {
             return true;
+            
         }
         return false;
     }
@@ -76,7 +99,6 @@ public class GenPresentBox : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.S) && colorNum == 2) return true;
         if (Input.GetKeyDown(KeyCode.D) && colorNum == 3) return true;
         if (Input.GetKeyDown(KeyCode.Space) && colorNum == 4) return true;
-        if (Input.GetKeyDown(KeyCode.F)) return true;
 
         return false;
     }

@@ -1,12 +1,13 @@
 using System;
-using TMPro;
+using UnityEngine;using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class UIContoller : MonoBehaviour
 {
+    public beforeMainGame beforeMainGame;
     int score;
-    float timeRemaining;
+    public float timeRemaining;
     bool timerIsRunnning = false;
     GameObject scoreText;
     GameObject timerText; 
@@ -34,24 +35,21 @@ public class UIContoller : MonoBehaviour
     {
         this.scoreText = GameObject.Find("score");
         this.timerText = GameObject.Find("timer");
-
         if (scene.name == "MainScene")
         {
             timerIsRunnning = true;
             score = 0;
-            timeRemaining = 30;
+            timeRemaining = 5;
         } else
         {
             
         }
-        
     }
-
 
     // Update is called once per frame
     void Update()
     {
-        if (timerIsRunnning)
+        if (timerIsRunnning && beforeMainGame.getIsGameStart())
         {
             if (timeRemaining > 0)
             {
@@ -67,12 +65,12 @@ public class UIContoller : MonoBehaviour
         
         if (scoreText != null)
         {
-             scoreText.GetComponent<TMP_Text>().text = "SCORE:" + score.ToString();
+            scoreText.GetComponent<TMP_Text>().text = "SCORE:" + score.ToString();
         }
 
         if (timerText != null)
         {
-            timerText.GetComponent<TMP_Text>().text = "" + Math.Round(timeRemaining,1);
+            timerText.GetComponent<TMP_Text>().text = "" + Math.Round(timeRemaining,1).ToString("F1");
         }
     }
 
