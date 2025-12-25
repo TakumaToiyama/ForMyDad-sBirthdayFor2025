@@ -16,7 +16,7 @@ public class beforeMainGame : MonoBehaviour
     MainAudioManager audioManager;
     void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<MainAudioManager>();
+        FindAudioManager();
         if (instance == null)
         {
             instance = this;
@@ -41,7 +41,7 @@ public class beforeMainGame : MonoBehaviour
     {
         if (scene.name == "MainScene")
         {
-            Debug.Log("load scene");
+            FindAudioManager();
             isGameStart = false;
         }
     }
@@ -83,5 +83,19 @@ public class beforeMainGame : MonoBehaviour
     {
         Debug.Log("isGameStart" + isGameStart);
         return isGameStart;
+    }
+
+    void FindAudioManager()
+    {
+        audioManager = MainAudioManager.Instance;
+        
+        if (audioManager == null)
+        {
+            Debug.LogWarning("MainAudioManager.Instance is null!");
+        }
+        else
+        {
+            Debug.Log("AudioManager found successfully!");
+        }
     }
 }

@@ -39,7 +39,7 @@ public class UIContoller : MonoBehaviour
         {
             timerIsRunnning = true;
             score = 0;
-            timeRemaining = 5;
+            timeRemaining = 30;
         } else
         {
             

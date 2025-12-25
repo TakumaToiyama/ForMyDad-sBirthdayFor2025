@@ -811,7 +811,7 @@ GameObject:
   - component: {fileID: 477614653}
   - component: {fileID: 477614652}
   m_Layer: 0
-  m_Name: AudioManager
+  m_Name: MainAudioManager
   m_TagString: Audio
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -881,7 +881,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 0.4
+  m_Volume: 1
   m_Pitch: 1
   Loop: 0
   Mute: 0

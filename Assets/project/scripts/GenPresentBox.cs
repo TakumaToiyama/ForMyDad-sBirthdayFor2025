@@ -16,7 +16,7 @@ public class GenPresentBox : MonoBehaviour
     MainAudioManager audioManager;
     void Awake()
     {
-        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<MainAudioManager>();
+        FindAudioManager();
         beforeMainGameObj = FindObjectOfType<beforeMainGame>();
     }
 
@@ -116,6 +116,21 @@ public class GenPresentBox : MonoBehaviour
         foreach (PresentController present in PresentsList)
         {
             present.MovePresentBox();
+        }
+    }
+
+    void FindAudioManager()
+    {
+        // ★ Instanceプロパティ経由で取得
+        audioManager = MainAudioManager.Instance;
+        
+        if (audioManager == null)
+        {
+            Debug.LogWarning("MainAudioManager.Instance is null!");
+        }
+        else
+        {
+            Debug.Log("AudioManager found successfully!");
         }
     }
 }

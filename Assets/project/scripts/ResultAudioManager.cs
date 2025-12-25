@@ -1,9 +1,9 @@
 using UnityEngine;
 
-public class MainAudioManager : MonoBehaviour
+public class ResultAudioManager : MonoBehaviour
 {
-    private static MainAudioManager instance;
-    public static MainAudioManager Instance => instance;
+    private static ResultAudioManager instance;
+    public static ResultAudioManager Instance => instance;
     void Awake()
     {
         if (instance == null)
@@ -14,17 +14,15 @@ public class MainAudioManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    } 
+    }
 
-[Header("---------- Audio Source ----------")]
-    [SerializeField] AudioSource musicSource;
+    [Header("---------- Audio Source ----------")]
     [SerializeField] AudioSource SFXSource;
 
 
     [Header("---------- Audio Clip ----------")]
-    public AudioClip countDown;
     public AudioClip button;
-    public AudioClip success;
+
 
     public void PlaySFX(AudioClip clip)
     {
@@ -36,7 +34,5 @@ public class MainAudioManager : MonoBehaviour
         SFXSource.clip = button;
         SFXSource.Play();
     }
-
 }
-
 
